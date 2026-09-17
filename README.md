@@ -67,15 +67,18 @@ Fleet drift number (all basket-A/B repos in `registry.json`; copy `registry.exam
 
 - `docs/` — handbook chapters, numbered in reading order
 - `docs/appendices/` — checklists and reference material
-- `templates/` — copy-paste standards (READMEs, governance, agent files). Placeholder links inside resolve at copy time and are exempt from link checks
-- `scripts/` — executable checks (`audit.sh`, `check-links.sh`) and scaffolding (`new-repo.sh`), MIT-licensed
-- `.github/workflows/` — CI: link check + self-audit on every push
+- `templates/` — copy-paste standards (READMEs, governance, agent files, CI workflows). Placeholder links inside resolve at copy time and are exempt from link checks
+- `scripts/` — executable checks (`audit.sh`, `check-links.sh`, `check-facts.sh`), fleet tools (`audit-fleet.sh`), scaffolding (`new-repo.sh`, `assemble-github.sh`), MIT-licensed
+- `.github/workflows/` — CI (audit, scaffold-smoke, markdownlint, links-external, scorecard) on every push
 - `facts.json` — single home for restated facts (verified by `scripts/check-facts.sh`); `.last-updated` per area marks the last review
 - `registry.example.json` — fleet registry shape with illustrative entries (real registries stay local, untracked)
+- `receipt.schema.json` — contract for `audit.sh --json` receipts; `.drydock.json` — standards stamp of this repo
+- `audits/TREND.md` — fleet drift trend (rows appended by local runs, not synced)
+- `CITATION.cff`, `CHANGELOG.md`, `LICENSE` — citation, history, terms
 
 ## Roadmap
 
-Shipped in 0.1: chapters 00–07, README templates T1/T2/B, governance templates, `audit.sh` / `new-repo.sh` / `check-links.sh` / `audit-fleet.sh`, self-audit CI, standards stamps, facts single-home.
+Shipped in 0.1: chapters 00–07, README templates T1/T2/B, governance templates, `audit.sh` / `new-repo.sh` / `check-links.sh` / `audit-fleet.sh` / `assemble-github.sh` / `check-facts.sh`, self-audit CI, standards stamps, facts single-home.
 
 Planned: shared `.github` defaults publication, fleet pilot adoptions, drift work queue (`--create-issues`), agent-file validators as CI complements.
 

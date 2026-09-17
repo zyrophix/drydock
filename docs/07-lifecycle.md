@@ -29,9 +29,9 @@ Basket C is not a stage — it is outside the lifecycle entirely.
 
 ## Branch protection (solo-fleet note)
 
-Public drydock carried a ruleset: no deletion, no force-push, no bypass actors. Required status checks were deliberately **not** in the ruleset — they deadlock solo direct-push (a check cannot pass on a commit that cannot be pushed). CI still runs on every push and gates pull requests. Revisit if the repo gains co-maintainers: then PR-required + strict checks become the honest setting.
+`main` carries a ruleset: no deletion, no force-push, no bypass actors. Required status checks are deliberately **not** in the ruleset — they deadlock solo direct-push (a check cannot pass on a commit that cannot be pushed). CI still runs on every push and gates pull requests. Revisit if the repo gains co-maintainers: then PR-required + strict checks become the honest setting.
 
-Caveat: GitHub gates both rulesets and classic branch protection behind Pro for *private* repos. While this repo is private on a Free plan, protection is local discipline only (no force-push habit + tags per release). Re-enable the ruleset if it goes public again or upgrades.
+Caveat: GitHub gates both rulesets and classic branch protection behind Pro for *private* repos on a Free plan. This setup assumes a public repo (or Pro); on a private Free repo, protection is local discipline only.
 
 ## Drydock's own release checklist (this repo)
 

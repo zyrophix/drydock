@@ -75,11 +75,6 @@ jobs:
       id-token: write
       contents: read
       actions: read
-      # extra reads: private repos deny Scorecard's API queries otherwise
-      # ("Resource not accessible by integration")
-      issues: read
-      pull-requests: read
-      checks: read
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:

@@ -4,9 +4,9 @@ The problem drydock solves is documentation drift across a fleet of repositories
 
 ## Field data
 
-A 21-directory fleet at the time of writing: three main languages plus systems and docs-only handbooks, roughly half hosted remotely, the rest local-only. Representative symptoms observed:
+A mid-size multi-language fleet at the time of writing: systems languages plus docs-only handbooks, roughly half hosted remotely, the rest local-only. Representative symptoms observed:
 
-1. **README spread 0–660 lines with no shared section order.** One project opens with install steps, another with philosophy, a third has an empty `README.md`, several have none at all. A reader cannot transfer knowledge from one repo to the next.
+1. **README spread from empty to hundreds of lines with no shared section order.** One project opens with install steps, another with philosophy, some have no README at all. A reader cannot transfer knowledge from one repo to the next.
 2. **Missing licenses.** Unlicensed code is "all rights reserved" by default — unusable for companies and contributors.
 3. **Governance at random.** `CONTRIBUTING.md` here, `SECURITY.md` there, `CHANGELOG.md` somewhere else, issue templates in one place. Each invented independently.
 4. **Broken git hygiene.** Local projects pointing `origin` at unrelated repos, folder names disagreeing with repo names (e.g. folder `tool` vs repo `toolkit`), projects with no remote at all.

@@ -1,8 +1,51 @@
+# --- drydock local (maintainer data, never commit) ---
+/registry.json
+/audits/latest/
+
+# --- crash leftovers ---
+/audits/TREND.md.tmp
+*.tmp
+
+# --- CI outputs ---
+results.sarif
+*.sarif
+
+# --- build outputs ---
 target/
-*.egg-info/
 dist/
 build/
 .venv/
+venv/
 __pycache__/
-audits/latest/
-registry.json
+*.pyc
+*.egg-info/
+coverage/
+htmlcov/
+.coverage
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+node_modules/
+
+# --- secrets / env ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets*.json
+
+# --- logs ---
+*.log
+npm-debug.log*
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.orig
+*.rej

@@ -6,7 +6,7 @@ Names are addresses. A wrong address costs every future visitor a redirect in th
 
 1. **Lowercase, hyphens, no underscores, no camelCase.** `night-shift`, not `night_shift`.
 2. **The repo name matches the thing it ships.** Binary, package, or book title — one name everywhere: repo, folder, package manager, README title. If the folder is `tool` but the repo is `toolkit`, every clone starts with confusion. Rename the folder.
-3. **No username prefixes, no `my-`, no `test-` in permanent repos.** Scaffolds either graduate or get archived (see lifecycle, Phase 3).
+3. **No username prefixes, no `my-`, no `test-` in permanent repos.** Scaffolds either graduate or get archived (see lifecycle).
 4. **Handbooks end in `-handbook`.** The suffix signals "book, not tool" (e.g. `guide-handbook`).
 
 ## Local folders

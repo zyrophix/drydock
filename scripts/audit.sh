@@ -77,7 +77,8 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     if [ "$REPO_PART" = "$NAME" ]; then
       pass "origin repo name matches folder ($REPO_PART)"
     else
-      fail "origin repo '$REPO_PART' != folder '$NAME' ($ORIGIN)"
+      # NOTE: full origin URL deliberately not printed — receipts must not leak remotes.
+      fail "origin repo '$REPO_PART' != folder '$NAME'"
     fi
   fi
   BRANCH="$(git branch --show-current 2>/dev/null || true)"
