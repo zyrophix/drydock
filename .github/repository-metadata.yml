@@ -1,0 +1,25 @@
+# Repository About-panel + settings checklist (stolen shape: Smoower/repo-gold-standard).
+# GitHub stores none of this in git — this file is the only versioned record.
+# Apply manually in Settings, tick the boxes.
+about:
+  description: "A dry dock for repositories: operating standards plus checks that enforce them."
+  # homepage: ""  # none yet (docs site deferred)
+  topics:
+    - documentation
+    - repository-standards
+    - developer-experience
+    - bash
+settings:
+  features:
+    issues: true
+    discussions: false # enable when questions arrive
+    wiki: false # handbook lives in docs/, not wiki
+    projects: false
+    private-vulnerability-reporting: true
+  merges:
+    allow_squash_merge: true
+    allow_merge_commit: false
+    allow_rebase_merge: false
+    delete_branch_on_merge: true
+  protection: # see also the live ruleset (docs/07 Branch protection)
+    main: [no-deletion, no-force-push]

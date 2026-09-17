@@ -1,0 +1,17 @@
+# See https://citation-file-format.github.io/
+cff-version: 1.2.0
+title: Drydock
+message: >-
+  If you use the drydock standards or scripts, please cite this handbook.
+type: software
+authors:
+  - alias: zyrophix
+repository-code: https://github.com/zyrophix/drydock
+url: https://github.com/zyrophix/drydock
+license: CC-BY-SA-4.0
+version: 0.1.0
+date-released: 2026-09-17
+keywords:
+  - repository-standards
+  - documentation
+  - developer-experience

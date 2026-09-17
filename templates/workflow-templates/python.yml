@@ -1,0 +1,16 @@
+# Shared Python (uv) CI — copy to .github/workflows/ci.yml (or reference from shared .github workflow-templates/).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, pinned
+      - uses: astral-sh/setup-uv@e4db8464a088ece1b920f60402e813ea4de65b8f # v4, pinned
+      - run: uv sync
+      - run: uv run ruff check
+      - run: uv run ruff format --check
+      - run: uv run pytest

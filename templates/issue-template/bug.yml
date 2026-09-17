@@ -1,0 +1,30 @@
+name: Bug report
+description: Something is broken.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Release tag or commit hash.
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: OS, distro, and version.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Exact commands, starting from a clean state.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+    validations:
+      required: true

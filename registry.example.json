@@ -1,0 +1,8 @@
+{
+  "_comment": "Illustrative fleet registry. Copy to registry.json (untracked, maintainer-local) and fill with real entries. Consumed by scripts/audit-fleet.sh.",
+  "repos": [
+    { "name": "atlas-cli", "basket": "A", "type": "t1", "local": "atlas-cli", "stage": "active" },
+    { "name": "guide-handbook", "basket": "A", "type": "t2", "local": "guide-handbook", "stage": "active" },
+    { "name": "scratch-tool", "basket": "B", "type": "b", "local": "scratch-tool", "stage": "personal" }
+  ]
+}

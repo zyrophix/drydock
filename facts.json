@@ -1,0 +1,12 @@
+{
+  "_comment": "Single home for facts restated across README/chapters/templates. Verified by scripts/check-facts.sh — edit here, not in prose.",
+  "standards": 1,
+  "fleet": { "repos": 3, "basketA": 2, "basketB": 1 },
+  "chapters": ["00-why", "01-tiers", "02-naming", "03-readme", "04-root-files", "05-github-defaults", "06-ai-layer", "07-lifecycle"],
+  "templates_root": ["agents.md", "claude.md", "code-of-conduct.md", "contributing.md", "funding.yml", "pull-request-template.md", "readme-t1-cli.md", "readme-t2-handbook.md", "readme-tb-local.md", "security.md", "support.md"],
+  "templates_issue": ["bug.yml", "config.yml", "feature.yml"],
+  "templates_workflows": ["go.yml", "gradle.yml", "python.yml", "rust.yml"],
+  "badges": { "min": 1, "max": 5 },
+  "readme_order_t1": ["Why", "Install", "Quickstart", "Usage", "Repooverview", "Contributing", "License"],
+  "readme_order_t2": ["Why", "Contents", "Howtoread", "Quickstart", "Repooverview", "Roadmap", "Principles", "Contributing", "License"]
+}

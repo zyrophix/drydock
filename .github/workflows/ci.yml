@@ -1,0 +1,95 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+# All third-party actions pinned to SHAs (see docs/05: SHA-pinned Actions).
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Link check (internal)
+        run: bash scripts/check-links.sh .
+      - name: Self-audit (this repo must pass its own standard)
+        run: bash scripts/audit.sh . --type t2
+      - name: Facts single-home check
+        run: bash scripts/check-facts.sh
+      - name: Drift summary
+        if: always()
+        run: bash scripts/audit.sh --type t2 . 2>&1 | tail -n 1 >> "$GITHUB_STEP_SUMMARY" || true
+  scaffold-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Scaffold t1, t2, b
+        run: |
+          bash scripts/new-repo.sh probe-t1 --type t1 --dir /tmp --license mit
+          bash scripts/new-repo.sh probe-handbook --type t2 --dir /tmp --license cc-by-sa
+          bash scripts/new-repo.sh probe-local --type b --dir /tmp --license mit
+      - name: Scaffolds are git repos with committed READMEs
+        run: |
+          for p in probe-t1 probe-handbook probe-local; do
+            test -f /tmp/$p/README.md
+            git -C /tmp/$p log --oneline | grep -q Scaffold
+          done
+      - name: Scaffolds report known placeholder gaps (t1/t2), b is green
+        run: |
+          if bash scripts/audit.sh --type t1 /tmp/probe-t1 > /tmp/t1.log 2>&1; then echo "t1 scaffold unexpectedly green"; exit 1; fi
+          grep -q "assets/demo.gif" /tmp/t1.log
+          if bash scripts/audit.sh --type t2 /tmp/probe-handbook > /tmp/t2.log 2>&1; then echo "t2 scaffold unexpectedly green"; exit 1; fi
+          grep -q "CONTRIBUTING.md" /tmp/t2.log
+          bash scripts/audit.sh --type b /tmp/probe-local
+      - name: Invalid inputs fail loudly
+        run: |
+          if bash scripts/new-repo.sh 'Bad_Name' --type t1 --dir /tmp; then exit 1; fi
+          if bash scripts/new-repo.sh probe-x --type t9 --dir /tmp; then exit 1; fi
+          if bash scripts/new-repo.sh probe-nolic --type t1 --dir /tmp; then exit 1; fi
+      - name: assemble --check round-trip (fresh tree syncs, stale tree fails)
+        run: |
+          bash scripts/assemble-github.sh /tmp/asm-fresh >/dev/null
+          bash scripts/assemble-github.sh --check /tmp/asm-fresh
+          echo "stale" >> /tmp/asm-fresh/FUNDING.yml
+          if bash scripts/assemble-github.sh --check /tmp/asm-fresh; then exit 1; fi
+          bash scripts/assemble-github.sh --stamp /tmp/asm-fresh | grep -q "standards 1"
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: "Markdown style (config: .markdownlint-cli2.jsonc)"
+        run: npx --yes markdownlint-cli2 "README.md" "docs/**/*.md" "CHANGELOG.md"
+  links-external:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: External link check (lychee)
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        with:
+          args: --max-retries 3 --timeout 20 --exclude-path templates 'README.md' 'docs/**/*.md' 'CHANGELOG.md'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  scorecard:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: OpenSSF Scorecard (supply-chain posture; hygiene stays in audit.sh)
+        uses: ossf/scorecard-action@f2ea147fec3c2f0d459703eba7405b5e9bcd8c8f # v2.4.2
+        with:
+          results_format: sarif
+          results_file: results.sarif
+          # publish_results stays false: the OpenSSF webapp allowlists
+          # scorecard-action commits and rejects otherwise-pinned SHAs
+          # ("imposter commit"). SARIF remains available as a run artifact.
+          publish_results: false
+      - name: Keep SARIF as run artifact (no code-scanning upload by design)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4, pinned
+        with:
+          name: scorecard-results
+          path: results.sarif

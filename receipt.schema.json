@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/zyrophix/drydock/blob/main/receipt.schema.json",
+  "title": "drydock audit receipt",
+  "_comment": "Emitted by scripts/audit.sh --json. Required keys enforced by scripts/check-facts.sh. Borrowed shape: edithatogo/repository-standards verification-receipt (trimmed: no artifacts/coverage until real coverage exists).",
+  "type": "object",
+  "required": ["repository", "type", "revision", "standards", "result", "checks", "summary"],
+  "properties": {
+    "repository": { "type": "string" },
+    "type": { "enum": ["t1", "t2", "b"] },
+    "revision": { "type": "string" },
+    "standards": { "type": "integer" },
+    "result": { "enum": ["pass", "fail"] },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "result", "evidence"],
+        "properties": {
+          "name": { "type": "string" },
+          "result": { "enum": ["pass", "fail", "warn"] },
+          "evidence": { "type": "string" }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["pass", "fail", "warn"],
+      "properties": {
+        "pass": { "type": "integer" },
+        "fail": { "type": "integer" },
+        "warn": { "type": "integer" }
+      }
+    }
+  }
+}

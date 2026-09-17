@@ -1,0 +1,17 @@
+# Shared Rust CI — copy to .github/workflows/ci.yml (or reference from shared .github workflow-templates/).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, pinned
+      - uses: dtolnay/rust-toolchain@stable # rolling by design; pin per-repo once toolchain freezes
+        with:
+          components: rustfmt, clippy
+      - run: cargo fmt --check
+      - run: cargo clippy -- -D warnings
+      - run: cargo test

@@ -1,0 +1,12 @@
+{
+  // markdownlint-cli2 config. Run: npx markdownlint-cli2 "README.md" "docs/**/*.md" "CHANGELOG.md"
+  // templates/ excluded on the command line: placeholder links and scaffolding comments are intentional there.
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD024": { "siblings_only": true },
+    "MD041": false,
+    "MD059": false,
+    "MD029": false
+  }
+}

@@ -1,0 +1,16 @@
+# Shared Gradle (Java) CI — copy to .github/workflows/ci.yml (or reference from shared .github workflow-templates/).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, pinned
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4, pinned
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: ./gradlew check

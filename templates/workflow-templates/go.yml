@@ -1,0 +1,17 @@
+# Shared Go CI — copy to .github/workflows/ci.yml (or reference from shared .github workflow-templates/).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, pinned
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5, pinned
+        with:
+          go-version-file: go.mod
+      - run: gofmt -l .
+      - run: go vet ./...
+      - run: go test ./... -race

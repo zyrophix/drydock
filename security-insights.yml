@@ -1,0 +1,13 @@
+# Security insights (https://github.com/ossf/security-insights-spec).
+# Handbook + scripts repo: no private contact channel beyond GitHub itself.
+# The shared SECURITY.md template for the fleet lives in templates/security.md.
+header:
+  schema-version: 1.0.0
+  last-updated: '2026-09-17'
+  last-reviewed: '2026-09-17'
+project:
+  repository: https://github.com/zyrophix/drydock
+security:
+  contacts:
+    - type: url
+      value: https://github.com/zyrophix/drydock/security/advisories/new

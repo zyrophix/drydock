@@ -1,0 +1,8 @@
+target/
+*.egg-info/
+dist/
+build/
+.venv/
+__pycache__/
+audits/latest/
+registry.json
