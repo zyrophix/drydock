@@ -8,6 +8,22 @@ for scripts and templates (docs prose is versioned by date, not numbers).
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-09-18
+
+### Changed
+
+- Ch.03 §4 amended: stamped `##` notes either stay empty or grow into
+  real `docs/` notes (pilot `hyprland-canvas` evidence).
+- Ch.07 release checklist now requires a GitHub Release object, not a tag
+  alone (a tag is invisible on the Releases page).
+- Registry ignore hardened: `registry.json` untracked project-local state,
+  only `registry.example.json` ships (templates note inherited wording).
+- Depersonalized: no personal identifiers in docs, templates or history.
+
+### Fixed
+
+- Fleet trend: bogus empty-run row replaced via rerun (per-date dedup verified).
+
 ## [0.1.0] — 2026-09-17
 
 ### Added

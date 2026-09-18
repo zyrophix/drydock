@@ -80,6 +80,8 @@ Fleet drift number (all basket-A/B repos in `registry.json`; copy `registry.exam
 
 Shipped in 0.1: chapters 00–07, README templates T1/T2/B, governance templates, `audit.sh` / `new-repo.sh` / `check-links.sh` / `audit-fleet.sh` / `assemble-github.sh` / `check-facts.sh`, self-audit CI, standards stamps, facts single-home.
 
+The repo version (`0.x.y`) snapshots scripts and templates; the standards version lives in the badge above (`facts.json`) and in each repo's `.drydock.json` stamp.
+
 Planned: shared `.github` defaults publication, fleet pilot adoptions, drift work queue (`--create-issues`), agent-file validators as CI complements.
 
 ## Principles
