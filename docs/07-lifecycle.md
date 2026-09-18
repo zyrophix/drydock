@@ -25,7 +25,9 @@ Basket C is not a stage — it is outside the lifecycle entirely.
 1. `CHANGELOG.md` `Unreleased` drained into a version section (Keep a Changelog).
 2. README install + quickstart re-verified on a clean machine.
 3. Tag `vX.Y.Z` (SemVer); binaries attached where applicable.
-4. `audit.sh` clean; the rest is the manual checklist in [appendices/audit-checklist.md](appendices/audit-checklist.md).
+4. GitHub Release created from the tag (a tag alone is invisible on the
+   Releases page) with notes = the CHANGELOG section, verbatim.
+5. `audit.sh` clean; the rest is the manual checklist in [appendices/audit-checklist.md](appendices/audit-checklist.md).
 
 ## Branch protection (solo-fleet note)
 
